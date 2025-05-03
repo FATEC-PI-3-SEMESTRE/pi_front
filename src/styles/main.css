@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  background-color: #f8f9ff;
+  color: #0c2d57;
+  font-family: Jost, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 140%;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.active {
+  color: #dd3842;
+}
+
+button {
+  transition:
+    color 0.2s,
+    background-color 0.4s;
+}
+
+table > thead > tr > th,
+table > tbody > tr > td {
+  text-align: left;
+  border-width: 1px;
+  padding: 0.5rem;
+}
+
+table > tbody > tr > td:has(button) {
+  text-align: center;
+}
