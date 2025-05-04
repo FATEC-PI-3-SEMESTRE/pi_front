@@ -8,14 +8,29 @@ const api = axios.create({
 
 api.interceptors.request.use(
   function (config) {
-    config.headers.Authorization = localStorage.getItem("token")
-      ? "Bearer " + localStorage.getItem("token")
-      : undefined;
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers.Authorization = "Bearer " + token;
+    }
     return config;
   },
   function (error) {
     return Promise.reject(error);
   },
+);
+
+// Tratamento de erro global
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      // Token expirado ou inválido, redirecionar para login
+      localStorage.removeItem("token");
+      // Use history.push para redirecionar para a página de login
+      window.location.href = "/login";
+    }
+    return Promise.reject(error);
+  }
 );
 
 export { api };
